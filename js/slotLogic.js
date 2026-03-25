@@ -11,7 +11,7 @@ const SYMBOLS = {
     'Q': { id: 2, weight: 7, img: 'assets/images/q.jpeg', name: 'Q' },
     'K': { id: 3, weight: 7, img: 'assets/images/k.jpeg', name: 'K' },
     'A': { id: 4, weight: 6, img: 'assets/images/a.jpeg', name: 'A' },
-    'PHARAOH': { id: 5, weight: 5, img: 'assets/images/vova.jpeg', name: 'Pharaoh' },
+    'PHARAOH': { id: 5, weight: 5, img: 'assets/images/vova.jpg', name: 'Pharaoh' },
     'SCARAB': { id: 6, weight: 5, img: 'assets/images/Scarab.jpeg', name: 'Scarab' },
     'EXPLORER': { id: 7, weight: 4, img: 'assets/images/Explorer.jpeg', name: 'Explorer' },
     'BOOK': { id: 8, weight: 8, img: 'assets/images/book.jpeg', name: 'Book', isWild: true, isScatter: true } // The "Book of Vova"
