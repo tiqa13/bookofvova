@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book of Vova</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>Book of Vova</h1>
+        </header>
+
+        <main class="slot-machine">
+            <div class="reels-container" id="reels-container">
+                <!-- 5 Reels will be generated here -->
+            </div>
+            
+            <div class="controls">
+                <div class="info-panel">
+                    <div class="balance">Balance: $<span id="balance-display">1000</span></div>
+                    <div class="bet">Bet: $<span id="bet-display">10</span></div>
+                    <div class="win">Win: $<span id="win-display">0</span></div>
+                </div>
+                <div class="button-panel">
+                    <button id="btn-mute" class="control-btn" title="Toggle Sound">🔊</button>
+                    <button id="btn-bet-down" class="control-btn">-</button>
+                    <button id="btn-bet-up" class="control-btn">+</button>
+                    <button id="btn-spin" class="spin-btn">SPIN</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/soundManager.js"></script>
+    <script src="js/slotLogic.js"></script>
+    <script src="js/winChecker.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

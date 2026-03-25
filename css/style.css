@@ -1,0 +1,185 @@
+:root {
+    --bg-color: #1a0f00;
+    --gold: #d4af37;
+    --red: #8b0000;
+    --dark-gold: #996515;
+    --text-color: #fdf5e6;
+    --reel-bg: #2d1c0b;
+    --symbol-size: 100px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Georgia', serif; /* A classic serif font fits the 'Book of' theme */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.game-container {
+    background: radial-gradient(circle, #3a2200 0%, #1a0f00 100%);
+    border: 4px solid var(--gold);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    width: 100%;
+}
+
+header h1 {
+    color: var(--gold);
+    text-shadow: 2px 2px 4px #000;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    margin-top: 0;
+    text-align: center;
+}
+
+.slot-machine {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+/* Reels Setup */
+.reels-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    background-color: var(--gold);
+    padding: 10px;
+    border-radius: 5px;
+    overflow: hidden; /* Important for hiding the top/bottom symbols during spin */
+    height: calc(var(--symbol-size) * 3); /* 3 rows */
+}
+
+.reel {
+    width: var(--symbol-size);
+    height: 100%;
+    background-color: var(--reel-bg);
+    border: 2px solid var(--dark-gold);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.symbols-strip {
+    /* We will translate this element up/down for the spin effect */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0s linear; /* Default transition, overwritten in JS for spins */
+}
+
+.symbol {
+    width: var(--symbol-size);
+    height: var(--symbol-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    /* For placeholder text, we use font-size. Will be replaced by background-image or <img> later */
+    font-size: 24px; 
+    font-weight: bold;
+    color: #fff;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Controls Setup */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    padding: 15px;
+    border: 2px solid var(--gold);
+    border-radius: 5px;
+}
+
+.info-panel {
+    display: flex;
+    gap: 20px;
+    font-size: 1.2rem;
+    color: var(--gold);
+    font-weight: bold;
+}
+
+.button-panel {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+button {
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    border: none;
+    transition: transform 0.1s, filter 0.2s;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+button:disabled {
+    cursor: not-allowed;
+    filter: grayscale(100%);
+    opacity: 0.7;
+}
+
+.control-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    background-color: var(--dark-gold);
+    color: #fff;
+}
+
+.control-btn:hover:not(:disabled) {
+    background-color: var(--gold);
+}
+
+.spin-btn {
+    padding: 10px 30px;
+    font-size: 1.5rem;
+    background: linear-gradient(to bottom, var(--red), #500000);
+    color: #fff;
+    border: 2px solid var(--gold);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.spin-btn:hover:not(:disabled) {
+    background: linear-gradient(to bottom, #a00000, var(--red));
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Win Animations */
+.symbol.win-anim {
+    animation: pulseWin 1s infinite alternate;
+    z-index: 10;
+    position: relative;
+    border-color: var(--gold);
+    box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.8);
+}
+
+@keyframes pulseWin {
+    0% { transform: scale(1); filter: brightness(1); }
+    100% { transform: scale(1.1); filter: brightness(1.3); }
+}
