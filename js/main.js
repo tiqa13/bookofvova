@@ -106,20 +106,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function triggerWinEffects() {
         // Detect if mobile to optimize particle count
         const isMobile = window.innerWidth < 768;
-        const particleMultiplier = isMobile ? 0.4 : 1;
+        const particleMultiplier = isMobile ? 0.5 : 1.5;
 
-        // Confetti burst
-        confetti({
-            particleCount: Math.floor(100 * particleMultiplier),
-            spread: 70,
-            origin: { y: 0.6 },
-            zIndex: 9999
-        });
+        // Giant initial Confetti bursts from multiple sides
+        const burstCount = Math.floor(300 * particleMultiplier);
+        confetti({ particleCount: burstCount, spread: 120, origin: { x: 0.2, y: 0.8 }, zIndex: 9999, startVelocity: 45 });
+        confetti({ particleCount: burstCount, spread: 120, origin: { x: 0.8, y: 0.8 }, zIndex: 9999, startVelocity: 45 });
+        confetti({ particleCount: burstCount, spread: 160, origin: { x: 0.5, y: 0.9 }, zIndex: 9999, startVelocity: 55 });
 
-        // Fireworks
-        const duration = 2 * 1000;
+        // Insane Fireworks
+        const duration = 5 * 1000;
         const animationEnd = Date.now() + duration;
-        const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+        const defaults = { startVelocity: 40, spread: 360, ticks: 100, zIndex: 9999 };
 
         function randomInRange(min, max) {
             return Math.random() * (max - min) + min;
@@ -132,12 +130,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 return clearInterval(interval);
             }
 
-            const baseParticleCount = 50 * (timeLeft / duration);
+            const baseParticleCount = 150 * (timeLeft / duration);
             const particleCount = Math.floor(baseParticleCount * particleMultiplier);
             
-            confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-            confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
-        }, isMobile ? 400 : 250);
+            // Generate multiple fireworks from completely random horizontal positions
+            for(let i = 0; i < (isMobile ? 2 : 4); i++) {
+                confetti(Object.assign({}, defaults, {
+                    particleCount,
+                    origin: { x: randomInRange(0.1, 0.9), y: Math.random() - 0.2 },
+                    colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ffffff']
+                }));
+            }
+        }, isMobile ? 250 : 100);
     }
 
     function highlightWins(wins) {
