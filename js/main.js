@@ -104,9 +104,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function triggerWinEffects() {
+        // Detect if mobile to optimize particle count
+        const isMobile = window.innerWidth < 768;
+        const particleMultiplier = isMobile ? 0.4 : 1;
+
         // Confetti burst
         confetti({
-            particleCount: 100,
+            particleCount: Math.floor(100 * particleMultiplier),
             spread: 70,
             origin: { y: 0.6 },
             zIndex: 9999
@@ -128,10 +132,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return clearInterval(interval);
             }
 
-            const particleCount = 50 * (timeLeft / duration);
+            const baseParticleCount = 50 * (timeLeft / duration);
+            const particleCount = Math.floor(baseParticleCount * particleMultiplier);
+            
             confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
             confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
-        }, 250);
+        }, isMobile ? 400 : 250);
     }
 
     function highlightWins(wins) {
