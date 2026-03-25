@@ -18,7 +18,6 @@ const SYMBOLS = {
 };
 
 const SYMBOL_KEYS = Object.keys(SYMBOLS);
-const SYMBOL_SIZE = 100; // Match var(--symbol-size) from css
 
 class SlotMachine {
     constructor(soundManager) {
@@ -137,7 +136,11 @@ class SlotMachine {
             // Calculate distance to move: total symbols minus the initial buffer (the old visible ones)
             // Minus ROWS to stop at the last 3 symbols.
             const totalSymbols = this.reels[i].symbols.length;
-            const distanceToMove = -((totalSymbols - ROWS) * SYMBOL_SIZE);
+            
+            // Dynamically get the symbol size based on the current reel height (which is 3 rows)
+            // This prevents the translation from breaking when CSS media queries change the symbol size
+            const currentSymbolSize = this.reels[i].element.clientHeight / ROWS;
+            const distanceToMove = -((totalSymbols - ROWS) * currentSymbolSize);
 
             // Create promise for this reel's animation
             const p = new Promise(resolve => {
