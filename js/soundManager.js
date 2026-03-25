@@ -4,7 +4,7 @@ class SoundManager {
             spin: new Audio('assets/sounds/spin.mp3'),
             reelStop: new Audio('assets/sounds/reel_stop.mp3'),
             win: new Audio('assets/sounds/win.mp3'),
-            bigWin: new Audio('assets/sounds/big_win.mp3'),
+            bigWin: new Audio('assets/sounds/bigwin.mp3'),
             buttonClick: new Audio('assets/sounds/click.mp3')
         };
         

@@ -6,15 +6,15 @@ const ROWS = 3;
 // Setup for custom images
 // Weight: higher = more common
 const SYMBOLS = {
-    '10': { id: 0, weight: 45, img: 'assets/images/10.jpeg', name: '10' },
-    'J': { id: 1, weight: 40, img: 'assets/images/j.jpeg', name: 'J' },
-    'Q': { id: 2, weight: 35, img: 'assets/images/q.jpeg', name: 'Q' },
-    'K': { id: 3, weight: 30, img: 'assets/images/k.jpeg', name: 'K' },
-    'A': { id: 4, weight: 25, img: 'assets/images/a.jpeg', name: 'A' },
-    'PHARAOH': { id: 5, weight: 20, img: 'assets/images/Pharaoh.jpeg', name: 'Pharaoh' },
-    'SCARAB': { id: 6, weight: 15, img: 'assets/images/Scarab.jpeg', name: 'Scarab' },
-    'EXPLORER': { id: 7, weight: 10, img: 'assets/images/Explorer.jpeg', name: 'Explorer' },
-    'BOOK': { id: 8, weight: 5, img: 'assets/images/book.jpeg', name: 'Book', isWild: true, isScatter: true } // The "Book of Vova"
+    '10': { id: 0, weight: 9, img: 'assets/images/10.jpeg', name: '10' },
+    'J': { id: 1, weight: 8, img: 'assets/images/j.jpeg', name: 'J' },
+    'Q': { id: 2, weight: 7, img: 'assets/images/q.jpeg', name: 'Q' },
+    'K': { id: 3, weight: 6, img: 'assets/images/k.jpeg', name: 'K' },
+    'A': { id: 4, weight: 5, img: 'assets/images/a.jpeg', name: 'A' },
+    'PHARAOH': { id: 5, weight: 4, img: 'assets/images/Pharaoh.jpeg', name: 'Pharaoh' },
+    'SCARAB': { id: 6, weight: 3, img: 'assets/images/Scarab.jpeg', name: 'Scarab' },
+    'EXPLORER': { id: 7, weight: 2, img: 'assets/images/Explorer.jpeg', name: 'Explorer' },
+    'BOOK': { id: 8, weight: 1, img: 'assets/images/book.jpeg', name: 'Book', isWild: true, isScatter: true } // The "Book of Vova"
 };
 
 const SYMBOL_KEYS = Object.keys(SYMBOLS);
