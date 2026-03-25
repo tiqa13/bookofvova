@@ -137,19 +137,19 @@ class SlotMachine {
             // Minus ROWS to stop at the last 3 symbols.
             const totalSymbols = this.reels[i].symbols.length;
             
-            // Dynamically get the symbol size based on the current reel height (which is 3 rows)
-            // This prevents the translation from breaking when CSS media queries change the symbol size
-            const currentSymbolSize = this.reels[i].element.clientHeight / ROWS;
-            const distanceToMove = -((totalSymbols - ROWS) * currentSymbolSize);
+            // Use CSS calc and var(--symbol-size) directly to ensure perfect alignment
+            // regardless of responsive scaling or viewport width.
+            const symbolsToScroll = totalSymbols - ROWS;
+            const transformValue = `calc(var(--symbol-size) * -${symbolsToScroll})`;
 
             // Create promise for this reel's animation
             const p = new Promise(resolve => {
                 // Small timeout to allow CSS to register the 'none' transition before we apply the spin
                 setTimeout(() => {
                     // Apply staggered duration
-                    const duration = 1.5 + (i * 0.5); 
+                    const duration = 1.5 + (i * 0.5);
                     strip.style.transition = `transform ${duration}s cubic-bezier(0.1, 0.7, 0.1, 1)`;
-                    strip.style.transform = `translateY(${distanceToMove}px)`;
+                    strip.style.transform = `translateY(${transformValue})`;
 
                     // Wait for animation to finish
                     setTimeout(() => {
